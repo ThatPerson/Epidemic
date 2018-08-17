@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LANDSCAPE_X_MAX 300
-#define LANDSCAPE_Y_MAX 100
+#define LANDSCAPE_X_MAX 500
+#define LANDSCAPE_Y_MAX 500
 
 float map[LANDSCAPE_X_MAX][LANDSCAPE_Y_MAX];
 int LANDSCAPE_X = 100;
@@ -189,9 +189,9 @@ int main(int argc, char*argv[]){
 	while (s.NUM_INFECTED > 0 && n < 10000) {
 		s = run();
 		switch (MODE) {
-			case 1: printf("%d\t%d\t%d\t%d\n", s.NUM_ALIVE, s.NUM_INFECTED, s.NUM_VACCINATED, s.NUM_DEAD); break;
-			case 2: printf("\n\n"); output_map(); break;
-			default: printf("%d\t%d\t%d\t%d\n", s.NUM_ALIVE, s.NUM_INFECTED, s.NUM_VACCINATED, s.NUM_DEAD); printf("\n\n"); output_map(); break;
+			case 1: printf("%d\t%d\t%d\t%d\t%d\n", s.NUM_ALIVE, s.NUM_INFECTED, s.NUM_VACCINATED, s.NUM_DEAD, s.NUM_ALIVE - s.NUM_VACCINATED); break;
+			case 2: printf("\n\n%d\n", n); output_map(); break;
+			default: printf("%d\t%d\t%d\t%d\t%d\n", s.NUM_ALIVE, s.NUM_INFECTED, s.NUM_VACCINATED, s.NUM_DEAD, s.NUM_ALIVE - s.NUM_VACCINATED); printf("\n\n"); output_map(); break;
 		}
 		n++;
 	}

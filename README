@@ -1,0 +1,69 @@
+This is a very simple program I wrote to model a theoretical outbreak of a disease, and the impact of herd immunity on this.
+
+The options the compiled program takes are as follows; (I is integer, F is float 0-1)
+
+
+* lxI - the x dimension of the grid(if you choose m!=1 you can get quite a nice terminal output, as shown below)
+* lyI - the y dimension of the grid
+* vF - the fraction of vaccinated people, eg v0.6 is 60% vaccinated
+* iI - the number of Patient Zeros
+* piF - the 'potency' of the infection. 1 will infect anyone who comes into contact with an infected (mediated by vaccination), 0 will infect nobody.
+* pvF - the 'potency' of the vaccine. 1 will not let the individual get infected, 0 is useless vaccine. pv0.5 means that there is 50% less chance of being infected.
+* dI - the period of time after infection before dying.
+* mI - the mode of output. m0 outputs everything, m1 outputs plottable csv data, m2 outputs maps.
+
+For an example of the output I have simulated a 79x24 grid, with 60% vaccination, a 80% effective vaccine, 100% effective infection, d5, and 2 patient zeros
+
+eg ./epi lx79 ly24 v0.6 i2 pi1 pv0.8 d5
+
+Graph;
+  2000 +-------------------------------------------------------------------+
+       |****    +       +        +       +        +       +        +       |
+  1800 |-+  *****                                            Alive *******-|
+       |         *****                                    Infected ####### |
+  1600 |-+            ****                              Vaccinated $$$$$$$-|
+       |                  *                         Non Vaccinated %%%%%%% |
+  1400 |-+                 ****                                          +-|
+       |                       ***                                         |
+  1200 |-+                        ****                                   +-|
+       |$$$$$$$$$$$$$                 *                                    |
+  1000 |-+           $$$$$$            ****                              +-|
+       |                   $$$$$$          *                               |
+   800 |-+                       $$$$$      **                           +-|
+       |%%%%%%%%%%%                   $$$$$   **                           |
+   600 |-+         %%%%%%%                 $$$$$***                      +-|
+       |                  %%%%%%%               $$$$$**                    |
+   400 |-+                       %%%%%%              $$$$$$$$$$**        +-|
+       |                               %%%%                    $$$$$$$$$$  |
+   200 |-+                                 %%%%%                         +-|
+       |        +      ########### #############%%%%%%%   +        +       |
+     0 +-------------------------------------------------------------------+
+       0        5       10       15      20       25      30       35      40
+
+
+Map (at t = 3)
+..-.-.-.---------.---.-.--..--.----.-.-----.--.-...-.------.....----.-----..---
+...---------.-.......-.-...-.-....----.-.-..--.----..--....-..-..-----.-..-.-.-
+-.III-I-I---....--.---...-.-.--..---...-..--....-.-.--.----....-.-----..--..-.-
+---x-xx-xxxI-.-.---..-.---------.---.----.....-.--.----.--.-.--.--..---..---.--
+-x-xxIxxxxxxIIII-I.-----..--..--..---.-.-.---..-.-..----..---.-.-.-..------.-.-
+x-xx-xxxx-xxxxxxx--...--.--.--.-.---.----.-...-.-..--.-......--.--...-..--..-..
+xxxxx-xxxxxxxIxxIII-----..-.---.--.-.---..-..-...----.------.------.-..----..--
+-xxxx-xxxxxxxxxx-xI---.-.------..----.--.---..-------.--.-...-.--.--II-.III-..-
+-xxxxxxxxxxxxx-xxxxI-------..-..--..---.------------...-..-...-...-xx----xx---.
+xxxx-xxxx-xxxxxxxxxI-.-------..--......-...-----.---.--.-.------I---xx-xxxxx---
+-xxxxxxxxxxxxxxxxxxI.---..----.--------..-.----......---.---.--Ixx-xxxxxxxx-I--
+xxxxxxxxxxxxxxxxxxII----..-...-...---..----..---.--.-.--.-....--Ixxxxxxxxxx----
+xxxxxxxxxxxxxxxxx-xI-.--.--..-.-.----.-.---.-.-.----.------..--Ixxxxxx-xxxI---x
+xx-x-xxxxxxx--xxxxII-------..----------..------.--...-...-.----IIxxx-xx-xxx-xxx
+-xxx-xxxxxxxxxxxxxxI...----..-.-..-.-.--------.---.-.-----..---I-xxxxxxxx-x-xxx
+--xxxxxxxxx-Ix--xx--..---------.----.----..--.-.--------..----.Ix--xxxxxxxxxxxx
+-x-xxxxxxxxx-I-Ixx--..--.--.---.-.....-.--.---.--...-..--------I----x-xx-x---xx
+x-x--xxxxxxxx--I--I.-.--...---...---...-.-----.--.---.----.-.---..--x-xxxxxxxx-
+xxxxxxxxxxxxx---.-..--.--.-..-.---.------..----.-.--..--....-..----xx-xx-xxxxxx
+xxxxxxxxx-xxxx---.----.-.---------.--.-.---.-..--...-...-.-..-----xxx-xx-xxxxxx
+x-xxxxxxxxx-xx-I-.--..--...-.---.-.-.-.....-.-..-.--.--.-..-----xxxxxxxxxx-xxx-
+xxxx-x-xx-x-xxxxI.--..-----......---.-.-..-.----.---.-.-.----..--xxxxxxxxxxxxxx
+-xxxx-xxxx-Ixxx--.------...--.--.----.-.--.-.---..-.---.----.----xxx-xxxxxxxxxx
+xx-xxx-xxx-Ix--I.-.---.-.--.-.-..---------...--..--.--.--.--.-..-xx-xxxx-xxxxxx
+(I is infected, x is dead, - is vaccinated and . is unvaccinated)
